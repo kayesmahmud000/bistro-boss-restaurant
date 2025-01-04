@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { authContext } from '../provider/AuthProvider';
 import { useForm } from "react-hook-form"
 import PageHelmet from '../shared/PageHelmet';
+import toast from 'react-hot-toast';
 
 const Register = () => {
     const {
@@ -23,6 +24,7 @@ const Register = () => {
             const user =result.user
             console.log(user)
             navigate("/")
+            toast.success('Successfully Sign Up!')
         })
         .catch(err=>{
             console.log(err)

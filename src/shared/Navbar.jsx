@@ -1,12 +1,33 @@
-import React from 'react';
+
+import { FaShoppingCart } from 'react-icons/fa';
 import { Link, NavLink } from 'react-router-dom';
+import useAuth from '../hooks/useAuth';
+import toast from 'react-hot-toast';
+
+import useCart from '../hooks/useCart';
 
 const Navbar = () => {
+    const { user, logout } = useAuth()
+   const [cart]= useCart()
+    // useEffect(()=>{
+    //     axiosSecure.get("/carts")
+    //     .then(res=>setCarts(res.data))
+    // },[])
+    const handleLogout=()=>{
+        logout()
+        .then(()=>{
+
+            toast.success('Successfully Logout!')
+        })
+        .catch(err=>console.log(err))
+    }
+
+    console.log(user?.email)
     const navLink = <>
         <li><NavLink to={'/'}>Home</NavLink></li>
         <li><NavLink to={'/menu'}> Our menu</NavLink></li>
         <li><NavLink to={'/shop/dessert'}> Our Shop</NavLink></li>
-        
+
     </>
     return (
         <>
@@ -40,10 +61,24 @@ const Navbar = () => {
                         {navLink}
                     </ul>
                 </div>
-                <div className="navbar-end">
-                    <Link to={"/login"}>
-                    <button className='btn bg-blue-400'> Login</button>
+                <div className="navbar-end gap-2">
+                    <Link to={'/dashboard/cart'}>
+                        <button className="flex ">
+                            <FaShoppingCart size={20} />
+                            <div className="badge -mt-1 badge-secondary text-xs">{cart.length}</div>
+                        </button>
                     </Link>
+                    {
+                        user && user?.email ? <>
+                         <button onClick={handleLogout} className='btn bg-red-400 text-white'> Logout</button>
+                        </> : <>
+                            <Link to={"/login"}>
+                                <button className='btn bg-blue-400 text-white'> Login</button>
+                            </Link>
+                        </>
+                    }
+
+
                 </div>
             </div>
         </>

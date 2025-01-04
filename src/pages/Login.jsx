@@ -1,15 +1,18 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { loadCaptchaEnginge, LoadCanvasTemplate,  validateCaptcha } from 'react-simple-captcha';
 import { authContext } from '../provider/AuthProvider';
 import PageHelmet from '../shared/PageHelmet';
+import toast from 'react-hot-toast';
 
 const Login = () => {
-    const captchaRef= useRef(null)
+    
     const [disable , setDisable]=useState(true)
     const { loginUser}=useContext(authContext)
-
+    const navigate= useNavigate()
+    const location= useLocation()
+    const from= location.state?.from?.pathname || "/"
     useEffect(()=>{
         loadCaptchaEnginge(6); 
     },[])
@@ -24,13 +27,15 @@ const Login = () => {
         .then(result=>{
            const  user = result.user
            console.log(user)
+           navigate(from, {replace:true})
+           toast.success('Successfully Logged!')
         })
         .catch(err=>{
             console.log(err)
         })
     }
-    const handleValidate =()=>{
-        const captcha= captchaRef.current.value
+    const handleValidate =(e)=>{
+        const captcha= e.target.value
         console.log(captcha)
 
         if(validateCaptcha(captcha)){
@@ -73,8 +78,8 @@ const Login = () => {
                             <label className="label">
                                 <span className="label-text">Reload Captcha</span>
                             </label>
-                            <input ref={captchaRef} type="text" name='captcha' placeholder="type hare" className="input input-bordered" required />
-                            <button onClick={handleValidate} className='btn btn-outline btn-xs'>validate</button>
+                            <input onBlur={handleValidate} type="text" name='captcha' placeholder="type hare" className="input input-bordered" required />
+                           
 
                         </div>
                         <div className="form-control flex justify-center mt-6">
