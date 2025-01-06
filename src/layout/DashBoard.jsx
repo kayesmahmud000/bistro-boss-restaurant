@@ -1,18 +1,25 @@
-import { FaCalendar,  FaSearch,  FaShoppingCart } from "react-icons/fa";
-import { FaBookBookmark } from "react-icons/fa6";
+import { FaBook, FaCalendar,  FaEnvelope,  FaList,  FaSearch,  FaShoppingCart,  FaUsers, FaUtensils } from "react-icons/fa";
+import { FaBagShopping, FaBookBookmark } from "react-icons/fa6";
 import { FcRating } from "react-icons/fc";
 import { IoHome } from "react-icons/io5";
 import { NavLink, Outlet } from "react-router-dom";
+import useCart from "../hooks/useCart";
+import useAdmin from "../hooks/useAdmin";
+
 
 
 const DashBoard = () => {
+    const [cart]= useCart()
+    const [isAdmin]= useAdmin()
+    console.log(isAdmin)
+    // const isAdmin= true
     return (
         <div className="lg:flex justify-between  lg:gap-32">
             <div className="drawer w-64 lg:drawer-open">
                
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content flex flex-col items-center justify-center">
-                    {/* Page content here */}
+                   
                    
                     <label htmlFor="my-drawer-2" className="btn  drawer-button lg:hidden">
                         Dashboard
@@ -23,8 +30,33 @@ const DashBoard = () => {
                  
                     <ul className="menu bg-[#D1A054] text-base-content min-h-full w-64 p-4">
                         {/* Sidebar content here */}
+                        {/* dashboard */}
                         <h2 className="text-xl font-bold mb-4"> Dashboard</h2>
-                        <li><NavLink to={'/dashboard/userHome'}>
+                        {
+                            isAdmin ?<>
+                            <li><NavLink to={'/dashboard/adminHome'}>
+                        <IoHome size={20} />
+                       Admin Home
+                        </NavLink></li>
+                        <li><NavLink to={'/dashboard/addItem'}>
+                        <FaUtensils size={20} />
+                        Add Items
+                        </NavLink></li>
+
+                        <li><NavLink to={'/dashboard/manageItems'} >
+                        <FaList size={20} />
+                       Manage Items
+                        </NavLink></li>
+                        <li><NavLink  to={'/dashboard/maageBookings'} >
+                        <FaBook size={20} />
+                      Manage Bookings
+                        </NavLink></li>
+                        <li><NavLink  to={'/dashboard/allUsers'} >
+                        <FaUsers size={20} />
+                      All Users
+                        </NavLink></li>
+                            </>:<>
+                            <li><NavLink to={'/dashboard/userHome'}>
                         <IoHome size={20} />
                         User Home
                         </NavLink></li>
@@ -45,6 +77,10 @@ const DashBoard = () => {
                         <FaBookBookmark size={20} />
                        My Bookings
                         </NavLink></li>
+                            </>
+                        }
+
+                        {/* shared  */}
                         <div className="divider"></div>
                         
                         <li><NavLink to={'/'}>
@@ -55,6 +91,15 @@ const DashBoard = () => {
                     <li><NavLink to={'/menu'}>
                         <FaSearch size={20} />
                          Menu
+                        </NavLink></li>
+                    <li><NavLink to={'/shop/dessert'}>
+                        <FaBagShopping size={20} />
+                         Shop
+                        </NavLink></li>
+
+                    <li><NavLink to={'/contact'}>
+                        <FaEnvelope size={20} />
+                         Contact
                         </NavLink></li>
                     
                     </ul>

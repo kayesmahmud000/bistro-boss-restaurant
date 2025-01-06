@@ -5,26 +5,45 @@ import { authContext } from '../provider/AuthProvider';
 import { useForm } from "react-hook-form"
 import PageHelmet from '../shared/PageHelmet';
 import toast from 'react-hot-toast';
+import useAxiosPublic from '../hooks/useAxiosPublic';
+import SocialLogin from '../shared/SocialLogin';
 
 const Register = () => {
     const {
         register,
         handleSubmit,
         watch,
+        reset,
         formState: { errors },
       } = useForm()
 
       
-    const {createUser}=useContext(authContext)
+    const {createUser, updateUser}=useContext(authContext)
     const navigate= useNavigate()
+    const axiosPublic= useAxiosPublic()
     const onSubmit = (data) =>{
 
         createUser(data.email, data.password)
         .then(result=>{
             const user =result.user
+            updateUser( data.name, data.photoUrl)
+            .then(()=>{
+                const userInfo= {name : data.name, email: data.email}
+                axiosPublic.post("/users", userInfo)
+                .then(res=>{
+                    if(res.data.insertedId){
+                        navigate("/")
+                        reset()
+                        toast.success('Successfully Sign Up!')
+                    }
+                })
+               
+            })
+            .catch(err=>{
+                console.log(err)
+            })
             console.log(user)
-            navigate("/")
-            toast.success('Successfully Sign Up!')
+           
         })
         .catch(err=>{
             console.log(err)
@@ -63,7 +82,7 @@ const Register = () => {
                         quasi. In deleniti eaque aut repudiandae et a id nisi.
                     </p>
                 </div>
-                <div className="card bg-base-100 w-1/2 shadow-2xl">
+                <div className="card bg-base-100 lg:w-1/2 shadow-2xl">
                     <form onSubmit={handleSubmit(onSubmit)} className="card-body">
                         <div className="form-control">
                             <label className="label">
@@ -71,6 +90,13 @@ const Register = () => {
                             </label>
                             <input type="text" placeholder="name" {...register("name", { required: true })} name='name' className="input input-bordered"  />
                             {errors.name && <span className='text-red-400'> name is required</span>}
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Photo Url</span>
+                            </label>
+                            <input type="text" placeholder="Photo Url" {...register("photoUrl", { required: true })} name='photoUrl' className="input input-bordered"  />
+                            {errors.photoUrl && <span className='text-red-400'>photo Url is required</span>}
                         </div>
                         <div className="form-control">
                             <label className="label">
@@ -99,9 +125,7 @@ const Register = () => {
                     </form>
                     <p className='text-center font-semibold text-[#D1A054] '>Already Have An Account ? <Link className=' underline' to={"/login"}>Login</Link></p>
                 <div class="divider px-10 mb-4">OR</div>
-                <div className='flex justify-center'>
-                    <button  className=' btn border border-blue-400 bg-white hover:bg-[#A020F0] hover:text-white  my-5 mb-7'> <FcGoogle /> Continue With Google</button>
-                </div>
+                <SocialLogin></SocialLogin>
                 </div>
             </div>
         </div>

@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { FcGoogle } from 'react-icons/fc';
+
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { loadCaptchaEnginge, LoadCanvasTemplate,  validateCaptcha } from 'react-simple-captcha';
 import { authContext } from '../provider/AuthProvider';
 import PageHelmet from '../shared/PageHelmet';
 import toast from 'react-hot-toast';
+import SocialLogin from '../shared/SocialLogin';
 
 const Login = () => {
     
@@ -89,9 +90,7 @@ const Login = () => {
                     </form>
                     <p className='text-center font-semibold text-[#D1A054] '>Don’t Have An Account ? <Link className=' underline' to={"/register"}> Register</Link></p>
                 <div class="divider px-10 mb-4">OR</div>
-                <div className='flex justify-center'>
-                    <button  className=' btn border border-blue-400 bg-white hover:bg-[#A020F0] hover:text-white  my-5 mb-7'> <FcGoogle /> Continue With Google</button>
-                </div>
+                <SocialLogin></SocialLogin>
                 </div>
             </div>
         </div>

@@ -70,7 +70,10 @@ const Navbar = () => {
                     </Link>
                     {
                         user && user?.email ? <>
-                         <button onClick={handleLogout} className='btn bg-red-400 text-white'> Logout</button>
+                        <div className='flex gap-3 items-center'>
+                            <h2 className='font-bold'>{user?.displayName}</h2>
+                        <button onClick={handleLogout} className='btn bg-red-400 text-white'> Logout</button>
+                        </div>
                         </> : <>
                             <Link to={"/login"}>
                                 <button className='btn bg-blue-400 text-white'> Login</button>
