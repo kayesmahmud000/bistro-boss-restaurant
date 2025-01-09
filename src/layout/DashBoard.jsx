@@ -5,6 +5,7 @@ import { IoHome } from "react-icons/io5";
 import { NavLink, Outlet } from "react-router-dom";
 import useCart from "../hooks/useCart";
 import useAdmin from "../hooks/useAdmin";
+import PageHelmet from "../shared/PageHelmet";
 
 
 
@@ -15,6 +16,7 @@ const DashBoard = () => {
     // const isAdmin= true
     return (
         <div className="lg:flex justify-between  lg:gap-32">
+            <PageHelmet title={"Dashboard"}></PageHelmet>
             <div className="drawer w-64 lg:drawer-open">
                
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -47,7 +49,7 @@ const DashBoard = () => {
                         <FaList size={20} />
                        Manage Items
                         </NavLink></li>
-                        <li><NavLink  to={'/dashboard/maageBookings'} >
+                        <li><NavLink  to={'/dashboard/manageBookings'} >
                         <FaBook size={20} />
                       Manage Bookings
                         </NavLink></li>

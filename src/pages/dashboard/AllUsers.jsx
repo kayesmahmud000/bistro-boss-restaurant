@@ -5,6 +5,7 @@ import { RiDeleteBin6Line } from 'react-icons/ri';
 import {  FaUsers } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import toast from 'react-hot-toast';
+import PageHelmet from '../../shared/PageHelmet';
 
 
 const AllUsers = () => {
@@ -61,6 +62,7 @@ const AllUsers = () => {
     useEffect
     return (
          <div>
+            <PageHelmet title={"Users"}></PageHelmet>
                    <div className='flex justify-between'>
                        
                        <h2 className='text-2xl font-bold'>Total Users :{users.length} </h2>

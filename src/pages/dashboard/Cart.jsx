@@ -4,6 +4,7 @@ import useCart from '../../hooks/useCart';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import PageHelmet from '../../shared/PageHelmet';
 
 const Cart = () => {
     const [cart, refetch] = useCart()
@@ -38,6 +39,7 @@ const Cart = () => {
     }
     return (
         <div>
+            <PageHelmet title={"Cart"}></PageHelmet>
             <div className='flex justify-between'>
                 <h2 className='text-2xl font-bold'>Items : {cart.length}</h2>
                 <h2 className='text-2xl font-bold'>Total price : {totalPrice}</h2>
