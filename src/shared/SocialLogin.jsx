@@ -12,20 +12,20 @@ const navigate= useNavigate()
     const handleSocial=()=>{
         googleLogin()
         .then(result=>{
-            console.log(result.user)
+            // console.log(result.user)
             const userInfo= {
                 name: result.user?.displayName,
                 email :result.user?.email
             }
             axiosPublic.post("/users", userInfo)
             .then(res=>{
-                console.log(res.data)
+                // console.log(res.data)
                 navigate("/")
             })
             
         })
         .catch(err=>{
-            console.log(err)
+            // console.log(err)
         })
     }
     return (

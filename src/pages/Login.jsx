@@ -23,21 +23,21 @@ const Login = () => {
         const form= e.target
         const email= form.email.value
         const password= form.password.value
-        console.log(email, password, )
+        // console.log(email, password, )
         loginUser(email, password)
         .then(result=>{
            const  user = result.user
-           console.log(user)
+        //    console.log(user)
            navigate(from, {replace:true})
            toast.success('Successfully Logged!')
         })
         .catch(err=>{
-            console.log(err)
+            // console.log(err)
         })
     }
     const handleValidate =(e)=>{
         const captcha= e.target.value
-        console.log(captcha)
+        // console.log(captcha)
 
         if(validateCaptcha(captcha)){
             setDisable(false)

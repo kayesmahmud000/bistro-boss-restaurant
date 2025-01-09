@@ -40,17 +40,17 @@ const Register = () => {
                
             })
             .catch(err=>{
-                console.log(err)
+                // console.log(err)
             })
-            console.log(user)
+            // console.log(user)
            
         })
         .catch(err=>{
-            console.log(err)
+            // console.log(err)
         })
-    console.log(data)
+    // console.log(data)
     } 
-    console.log(watch("example")) 
+    // console.log(watch("example")) 
     // const handleRegister=e=>{
 
     //     e.preventDefault()

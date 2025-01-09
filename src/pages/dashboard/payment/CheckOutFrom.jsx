@@ -22,7 +22,7 @@ const axiosSecure= useAxiosSecure()
    if(price>0){
     axiosSecure.post("/create-payment-intent", {price: price})
     .then(res=>{
-        console.log(res.data.client_secret)
+        // console.log(res.data.client_secret)
         setClientSecret(res.data.client_secret)
     })
    }
@@ -42,10 +42,10 @@ const axiosSecure= useAxiosSecure()
             card
         })
         if(error){
-            console.log("payment error", error)
+            // console.log("payment error", error)
             setError(error.message)
         }else{
-            console.log("payment method", paymentMethod)
+            // console.log("payment method", paymentMethod)
             setError("")
         }
         // confirm card payment
@@ -60,11 +60,11 @@ const axiosSecure= useAxiosSecure()
             },  
         })
         if(confirmError){
-            console.log("confirm error" , confirmError)
+            // console.log("confirm error" , confirmError)
         }else{
-            console.log("payment intent", paymentIntent)
+            // console.log("payment intent", paymentIntent)
             if(paymentIntent.status ==="succeeded"){
-                console.log("transaction id" , paymentIntent.id)
+                // console.log("transaction id" , paymentIntent.id)
                 setTransaction(paymentIntent.id)
 
                 const payment= {
@@ -79,7 +79,7 @@ const axiosSecure= useAxiosSecure()
                 }
 
                 const res=await axiosSecure.post('/payment', payment)
-                console.log("payment save" ,res.data)
+                // console.log("payment save" ,res.data)
                 refetch()
                 if(res.data.result.insertedId){
                     Swal.fire({

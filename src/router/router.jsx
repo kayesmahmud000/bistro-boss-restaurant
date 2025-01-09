@@ -15,6 +15,8 @@ import ManageItem from "../pages/dashboard/ManageItem";
 import UpdateItem from "../pages/dashboard/UpdateItem";
 import Payment from "../pages/dashboard/payment/Payment";
 import PaymentHistory from "../pages/dashboard/PaymentHistory";
+import AdminHome from "../pages/dashboard/AdminHome";
+import UserHome from "../pages/dashboard/UserHome";
 
 const router = createBrowserRouter([
     {
@@ -53,6 +55,10 @@ const router = createBrowserRouter([
       children:[
         // normal route
         {
+          path:"/dashboard/userHome",
+          element:<UserHome></UserHome>
+        },
+        {
           path:"/dashboard/cart",
           element:<Cart></Cart>
         },
@@ -66,6 +72,13 @@ const router = createBrowserRouter([
         },
 
         // admin route
+        {
+
+          path:"/dashboard/adminHome",
+          // element:<AddItems></AddItems>
+          element:<AdminRoute><AdminHome></AdminHome></AdminRoute>
+
+        },
         {
 
           path:"/dashboard/addItem",
@@ -83,7 +96,7 @@ const router = createBrowserRouter([
 
           path:"/dashboard/updateItem/:id",
           element:<AdminRoute><UpdateItem></UpdateItem></AdminRoute>,
-          loader: ({params})=>fetch(`http://localhost:5000/menu/${params.id}`)
+          loader: ({params})=>fetch(`https://bistro-boss-server-opal-three.vercel.app/menu/${params.id}`)
 
         },
         {

@@ -33,7 +33,7 @@ const AllUsers = () => {
         
                         axiosSecure.delete(`/users/${user._id}`)
                             .then(res => {
-                                console.log(res.data)
+                                // console.log(res.data)
                                 if (res.data.deletedCount > 0) {
                                     refetch()
                                       Swal.fire({
@@ -50,7 +50,7 @@ const AllUsers = () => {
       const  handleMakeAdmin =user=>{
         axiosSecure.patch(`/users/admin/${user._id}`)
         .then(res=>{
-            console.log(res.data)
+            // console.log(res.data)
             refetch()
             if(res.data.modifiedCount>0){
                 toast.success(`${user.name} is an admin now!`)

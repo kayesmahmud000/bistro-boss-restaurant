@@ -12,7 +12,7 @@ import PageHelmet from "../shared/PageHelmet";
 const DashBoard = () => {
     const [cart]= useCart()
     const [isAdmin]= useAdmin()
-    console.log(isAdmin)
+    // console.log(isAdmin)
     // const isAdmin= true
     return (
         <div className="lg:flex justify-between  lg:gap-32">

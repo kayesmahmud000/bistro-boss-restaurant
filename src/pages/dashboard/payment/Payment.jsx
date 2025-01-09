@@ -2,6 +2,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import SectionTitle from "../../../shared/SectionTitle";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckOutFrom from "./CheckOutFrom";
+import PageHelmet from "../../../shared/PageHelmet";
 
 // TODO: create stripe account and get publishable key
 

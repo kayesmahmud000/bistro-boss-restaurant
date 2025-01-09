@@ -5,9 +5,11 @@ import useAuth from '../hooks/useAuth';
 import toast from 'react-hot-toast';
 
 import useCart from '../hooks/useCart';
+import useAdmin from '../hooks/useAdmin';
 
 const Navbar = () => {
     const { user, logout } = useAuth()
+    const [isAdmin]= useAdmin()
    const [cart]= useCart()
     // useEffect(()=>{
     //     axiosSecure.get("/carts")
@@ -19,14 +21,22 @@ const Navbar = () => {
 
             toast.success('Successfully Logout!')
         })
-        .catch(err=>console.log(err))
+        .catch(err=>{
+            // console.log(err)
+        })
     }
 
-    console.log(user?.email)
+    // console.log(user?.email)
     const navLink = <>
         <li><NavLink to={'/'}>Home</NavLink></li>
         <li><NavLink to={'/menu'}> Our menu</NavLink></li>
         <li><NavLink to={'/shop/dessert'}> Our Shop</NavLink></li>
+        {
+            user && isAdmin && <li><NavLink to={'/dashboard/adminHome'}> Dashboard</NavLink></li>
+        }
+        {
+            user && !isAdmin && <li><NavLink to={'/dashboard/userHome'}> Dashboard</NavLink></li>
+        }
 
     </>
     return (

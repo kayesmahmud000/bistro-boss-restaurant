@@ -14,10 +14,10 @@ const OurShop = () => {
     
     const categories =["dessert","pizza", "salad", "soup", "drinks" ]
     const {category}= useParams()
-    console.log(category)
+    // console.log(category)
     const [menu]= useMenu()
     const initialIndex= categories.indexOf(category)
-    console.log(initialIndex)
+    // console.log(initialIndex)
     const [tabIndex, setTabIndex] = useState(initialIndex);
 
     const dessert= menu.filter(item=> item.category ==="dessert")

@@ -13,7 +13,7 @@ const ManageItem = () => {
     const [menu, , refetch] = useMenu()
     const axiosSecure = useAxiosSecure()
     const handleUpdate = (item) => {
-        console.log(item)
+        // console.log(item)
     }
     const handleDeleteItem = (item) => {
 
@@ -29,7 +29,7 @@ const ManageItem = () => {
             if (result.isConfirmed) {
 
                 const res = await axiosSecure.delete(`/menu/${item._id}`)
-                console.log(res.data)
+                // console.log(res.data)
                 if (res.data.deletedCount > 0) {
 
                     refetch()
