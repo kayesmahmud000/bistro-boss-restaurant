@@ -5,6 +5,7 @@ import { RiDeleteBin6Line } from 'react-icons/ri';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import PageHelmet from '../../shared/PageHelmet';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
     const [cart, refetch] = useCart()
@@ -43,7 +44,9 @@ const Cart = () => {
             <div className='flex justify-between'>
                 <h2 className='text-2xl font-bold'>Items : {cart.length}</h2>
                 <h2 className='text-2xl font-bold'>Total price : {totalPrice}</h2>
-                <button className=' btn text-2xl font-bold'>Pay</button>
+              {cart.length ? <Link to={"/dashboard/payment"}>
+              <button  className=' btn text-2xl font-bold bg-[#D1A054] text-white'>Pay</button>
+               </Link>:<button disabled  className=' btn text-2xl font-bold bg-[#D1A054] text-white'>Pay</button> } 
             </div>
             <div>
                 <div className="overflow-x-auto">

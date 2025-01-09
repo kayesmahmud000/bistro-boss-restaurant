@@ -41,7 +41,7 @@ const AuthProvider = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             const userInfo = {email: currentUser?.email}
             if (currentUser) {
-                axiosPublic.post("jwt", userInfo )
+                axiosPublic.post("/jwt", userInfo )
                 .then(res=>{
                     if(res.data.token){
                         localStorage.setItem(

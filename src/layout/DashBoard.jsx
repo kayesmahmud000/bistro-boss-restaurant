@@ -75,9 +75,9 @@ const DashBoard = () => {
                         <FcRating size={20} />
                        Review
                         </NavLink></li>
-                        <li><NavLink  to={'/dashboard/bookings'} >
+                        <li><NavLink  to={'/dashboard/paymentHistory'} >
                         <FaBookBookmark size={20} />
-                       My Bookings
+                       Payment History
                         </NavLink></li>
                             </>
                         }

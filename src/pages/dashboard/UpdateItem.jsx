@@ -23,7 +23,7 @@ const axiosSecure =useAxiosSecure()
         const menuRes= await axiosSecure.patch(`/menu/${_id}`, menuItem)
         console.log(menuRes.data)
         if(menuRes.data.modifiedCount){
-            toastn.success(`${data.name} is updated the menu list`)
+            toast.success(`${data.name} is updated the menu list`)
             reset()
         }
     }
