@@ -16,6 +16,7 @@ const OurShop = () => {
     const {category}= useParams()
     // console.log(category)
     const [menu]= useMenu()
+    console.log(menu)
     const initialIndex= categories.indexOf(category)
     // console.log(initialIndex)
     const [tabIndex, setTabIndex] = useState(initialIndex);
